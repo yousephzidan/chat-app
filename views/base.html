@@ -1,0 +1,26 @@
+<!-- views/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Chat App{% endblock %}</title>
+
+    {% block head_imports %}
+    <!-- Head links import's -->
+    {% endblock %}
+</head>
+
+<body>
+    <!-- Main content -->
+    {% block content %}
+    <!-- Page-specific content goes here -->
+    {% endblock %}
+
+    {% block bottom_js_scripts %}
+    <!-- Page-specific scripts -->
+    {% endblock %}
+</body>
+
+</html>
