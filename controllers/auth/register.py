@@ -14,21 +14,29 @@ def register_post():
     username = request.form.get("username")
     password = request.form.get("password")
 
-    _hash_password = generate_password_hash(password)
+    if not username:
+        flash("Please enter a username", "username_error") 
+        return redirect(url_for("auth.register_get"))
+
+    if not password:
+        flash("Please provide a password", "password_error") 
+        return redirect(url_for("auth.register_get"))
+ 
+    _hash_password = generate_password_hash(password, method="pbkdf2:sha256", salt_length=16)
+
 
     existing_user = User.query.filter_by(username=username).first()
 
     if existing_user:
-        flash("Username already taken. Please choose another one.", "flash_error") 
-        return redirect(url_for("auth.register.register_get"))
+        flash("Username already taken. Please choose another one.", "existingUser_error") 
+        return redirect(url_for("auth.register_get"))
 
     user = User(username=username, password=_hash_password) 
     db.session.add(user)
     db.session.commit()
 
-    flash("Account created successfully! Login", "flash_success")
-    return redirect(url_for("auth.login.login_get"))
-    ...
+    flash("Account created successfully! Login", "general_flash_success")
+    return redirect(url_for("auth.login_get"))
 
 @auth_bp.get("/register")
 def register_get():

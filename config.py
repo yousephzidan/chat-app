@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    SECERT_KEY: str = os.getenv("SECRET_KEY", "dev_secret_key") 
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "dev_secret_key") 
     DEBUG: bool = False
     TESTING: bool = False
     SQLALCHEMY_DATABASE_URI  =  "postgresql://postgres:root@localhost:5432/chat_app"

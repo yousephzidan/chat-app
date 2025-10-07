@@ -1,0 +1,37 @@
+.general_flash {
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 0.85) !important;
+    /* red for error */
+    color: red;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    min-width: 200px;
+    text-align: center;
+    animation: slideDown 0.5s ease, fadeOut 0.5s ease 3s forwards;
+}
+
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Fade out */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_imports %}
+<link rel="stylesheet" href="{{url_for('static', filename='styling/home/home.css')}}">
+{% endblock head_imports %}
+
+{% block content %}
+<div class="container">
+    <aside>
+        <section class="friends"></section>
+        <section class="config">
+            <div>add_friend</div>
+            <div>settings</div>
+            <div>profile</div>
+        </section>
+    </aside>
+    <main></main>
+</div>
+{% endblock content %}
+
+{% block js_scripts}
+
+{% endblock js_scripts}

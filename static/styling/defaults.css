@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Iskry";
+    src: url("../fonts/Iskry-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: "Aeonik";
+    src: url("../fonts/Aeonik-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --bg-dark: #101010;
+    --text-primary-dark: #E0E0E0;
+}

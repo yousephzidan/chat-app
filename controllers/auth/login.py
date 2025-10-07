@@ -13,22 +13,27 @@ def login_post():
     username = request.form.get("username")
     password = request.form.get("password")
 
+    if 4 > len(username):
+        flash("Username must be at least 4 characaters", "username_length_error") 
+        return redirect(url_for("auth.login_get"))
+
 
     user = User.query.filter_by(username=username).first()
 
     if not user:
-        flash("Account doesn't exist. Please register first.", "flash_error") 
-        return redirect(url_for("auth.login.login_get"))
+        flash("Account doesn't exist. Please register first.", "username_not_exist") 
+        return redirect(url_for("auth.login_get"))
 
     if not check_password_hash(user.password, password):
-        flash("Inccorent credentials. Try again.", "flash_error") 
-        return redirect(url_for("auth.login.login_get"))
+        flash("Inccorent credentials. Try again.", "wrong_password") 
+        return redirect(url_for("auth.login_get"))
 
     session["user_id"] = user.id
     session["logged"] = True
 
+
     flash("Account created successfully! Login", "flash_success")
-    #return redirect(url_for("home.home.home_get"))
+    return redirect(url_for("home.home_get"))
 
 @auth_bp.get("/login")
 def login_get():

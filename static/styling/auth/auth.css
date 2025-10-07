@@ -1,0 +1,94 @@
+@import "../defaults.css";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a,
+li,
+ul,
+button {
+    all: unset;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary-dark);
+    font-family: "Aeonik";
+    line-height: 1.6;
+    padding: 3rem 1rem;
+
+}
+
+.container {
+    max-width: 25rem;
+    margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+    gap: 2rem;
+    background-color: rgb(22, 22, 22);
+    border-radius: 16px;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+@media (max-width: 426px) {
+    .card {
+        min-height: 85vh;
+    }
+
+}
+
+.field {
+    width: 80%;
+}
+
+.card input {
+    width: 100%;
+    height: 44px;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+}
+
+.field label,
+.field input {
+    margin: 10px 0 10px 0;
+}
+
+.error {
+    color: rgb(233, 54, 54);
+}
+
+.control-btns {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.control-btns button {
+    cursor: pointer;
+    height: 44px;
+    padding: 4px 24px 4px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: black;
+    color: var(--text-primary-dark);
+
+}
+
+.control-btns a {
+    cursor: pointer;
+    color: var(--text-primary-dark);
+}

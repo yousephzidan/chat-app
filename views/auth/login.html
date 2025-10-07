@@ -1,5 +1,48 @@
 {% extends "base.html" %}
+{% block head_imports %}
+<link rel="stylesheet" href="{{url_for('static', filename='styling/auth/auth.css')}}">
+{% endblock head_imports %}
 
 {% block content %}
-<h1>login here</h1>
+<div class="container">
+    <form action="{{url_for('auth.login_post')}}" class="card" method="POST">
+        <h1>Login</h1>
+        <div class="field">
+            <label>Username*</label>
+            <input name="username" type="text" placeholder="Username">
+
+            {% with messages = get_flashed_messages(category_filter=["username_length_error"]) %}
+            {% if messages %}
+            <div class="error">{{ messages[0] }}</div>
+            {% endif %}
+            {% endwith %}
+
+            {% with messages = get_flashed_messages(category_filter=["username_not_exist"]) %}
+            {% if messages %}
+            <div class="error">{{ messages[0] }}</div>
+            {% endif %}
+            {% endwith %}
+
+
+        </div>
+
+        <div class="field">
+            <label>Password*</label>
+            <input name="password" type="text" placeholder="password">
+
+            {% with messages = get_flashed_messages(category_filter=["wrong_password"]) %}
+            {% if messages %}
+            <div class="error">{{ messages[0] }}</div>
+            {% endif %}
+            {% endwith %}
+
+        </div>
+
+        <div class="control-btns">
+            <button type="submit">Login</button>
+            <a href="{{url_for('auth.register_get')}}">Sign Up</a>
+        </div>
+
+    </form>
+</div>
 {% endblock content %}
