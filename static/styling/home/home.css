@@ -62,3 +62,63 @@ main {
     border-radius: 16px;
     flex-grow: 1;
 }
+
+aside .config {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.add_friend {
+    position: relative;
+}
+
+.total_recieved_friends_request {
+    color: white;
+    background-color: red;
+    border-radius: 50px;
+    width: 25px;
+    font-size: 12px;
+    text-align: center;
+    position: absolute;
+    bottom: 80%;
+    left: 90%;
+}
+
+.add_friends_popup {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(22, 22, 22);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border: 1px solid white;
+}
+
+.dnone {
+    display: none;
+}
+
+
+.profile {
+    position: relative;
+}
+
+.profile_popup {
+    position: absolute;
+    background-color: black;
+    width: 250px;
+    height: 250px;
+    bottom: 250%;
+    z-index: 9999;
+    border-radius: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 24px;
+}

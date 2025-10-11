@@ -9,15 +9,46 @@
     <aside>
         <section class="friends"></section>
         <section class="config">
-            <div>add_friend</div>
             <div>settings</div>
-            <div>profile</div>
+            <div class="profile">profile
+                <div class="profile_popup dnone">
+                    <div>Username: {{user_info.username}}</div>
+                </div>
+            </div>
+            <div class="add_friend">add_friend
+                <div class="total_recieved_friends_request">
+                    {% if total_received_friends_reqs %}
+                    {{ total_received_friends_reqs|length }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="add_friends_popup dnone">
+                <h1>Add Friend</h1>
+                <p>Add friend by their username</p>
+                <div>
+                    <input type="text" placeholder="username" class="add_username_input">
+                    <button class="add_friend_submit_btn">add friend</button>
+                </div>
+                <div class="add_friend_error">
+                </div>
+                <hr>
+                <br>
+                <h3>Incoming friends requests</h3>
+                {% if total_received_friends_reqs %}
+                {% for username, id in total_received_friends_reqs %}
+                <div user-id="{{id}}">{{username}}</div>
+                {% endfor %}
+                {% endif %}
+            </div>
         </section>
     </aside>
     <main></main>
 </div>
+
 {% endblock content %}
 
-{% block js_scripts}
+{% block js_scripts %}
 
-{% endblock js_scripts}
+<script type='text/javascript' src="{{ url_for('static', filename='scripts/home/friends.js') }}"></script>
+
+{% endblock js_scripts %}
