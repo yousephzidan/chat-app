@@ -31,27 +31,27 @@ def create_app():
 
     socketio = SocketIO(app)
     
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-
-        for user in ["max1", "joe1", "tim1", "jack1"]:
-            user = User(username=user, password=generate_password_hash("123", method="pbkdf2:sha256", salt_length=16)) 
-            db.session.add(user)
-            db.session.commit()
-
-        friend = Friends(sender_id=1, receiver_id=3, status="pending")
-        db.session.add(friend)
-        db.session.commit()
-
-
-        friend = Friends(sender_id=2, receiver_id=3, status="pending")
-        db.session.add(friend)
-        db.session.commit()
-
-        friend = Friends(sender_id=1, receiver_id=2, status="pending")
-        db.session.add(friend)
-        db.session.commit()
+#    with app.app_context():
+#        db.drop_all()
+#        db.create_all()
+#
+#        for user in ["max1", "joe1", "tim1", "jack1"]:
+#            user = User(username=user, password=generate_password_hash("123", method="pbkdf2:sha256", salt_length=16)) 
+#            db.session.add(user)
+#            db.session.commit()
+#
+#        friend = Friends(sender_id=1, receiver_id=3, status="pending")
+#        db.session.add(friend)
+#        db.session.commit()
+#
+#
+#        friend = Friends(sender_id=2, receiver_id=3, status="pending")
+#        db.session.add(friend)
+#        db.session.commit()
+#
+#        friend = Friends(sender_id=1, receiver_id=2, status="pending")
+#        db.session.add(friend)
+#        db.session.commit()
 
     return app, socketio
 

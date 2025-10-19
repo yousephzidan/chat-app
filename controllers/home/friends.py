@@ -3,6 +3,34 @@ from controllers import friends_bp
 from models import User, Friends, db
 from sqlalchemy import or_, and_
 
+@friends_bp.post("/respond/<int:sender_id>")
+def friend_request_action(sender_id: int):
+    current_user = session.get('user_id')
+
+    action = request.get_json()
+    action = action.get("action")
+    if not current_user:
+        abort(404)
+
+    friend_request = Friends.query.filter(Friends.sender_id==sender_id, Friends.receiver_id==current_user, Friends.status=="pending").first()
+   
+    if not friend_request:
+        return jsonify({"error": "Friend request not found"})
+
+    if action == "reject":
+        db.session.delete(friend_request)
+        db.session.commit()
+        return jsonify({"reject": "friend request rejected"}), 201
+
+    elif action == "accept":
+        friend_request.status = "accepted"
+        db.session.commit()
+        return jsonify({"accept": "friend request accepted"}), 201
+
+    return jsonify({"error": "Invalid action"}), 400
+
+
+    ...
 @friends_bp.post("/add/<string:friend_username>")
 def add_friend(friend_username: str):
     current_user = session.get('user_id')

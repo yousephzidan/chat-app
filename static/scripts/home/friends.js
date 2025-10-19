@@ -53,3 +53,18 @@ profile_btn.addEventListener("click", () => {
     profile_popup.classList.toggle("dnone")
 });
 
+
+async function respond(requestId, action) {
+  const response = await fetch(`/friends/respond/${requestId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({action})
+  })
+
+    const data = await response.json();
+    console.log(data);
+  }
+
+
+
+

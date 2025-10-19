@@ -7,7 +7,13 @@
 {% block content %}
 <div class="container">
     <aside>
-        <section class="friends"></section>
+      <section class="friends">
+        {% if friends %}
+          {% for friend, id in friends %}
+            <div class="friend" user-id="{{id}}">{{friend}}</div>
+          {% endfor %}
+        {% endif %}
+      </section>
         <section class="config">
             <div>settings</div>
             <div class="profile">profile
@@ -36,7 +42,13 @@
                 <h3>Incoming friends requests</h3>
                 {% if total_received_friends_reqs %}
                 {% for username, id in total_received_friends_reqs %}
-                <div user-id="{{id}}">{{username}}</div>
+                  <div class="friend_request" user-id="{{id}}">
+                    <p>{{username}}</p>
+                    <div>
+                      <button class="accept_fr" onclick="respond('{{id}}','accept')" >accept</button>
+                      <button class="reject_fr" onclick="respond('{{id}}','reject')" >reject</button>
+                    </div>
+                  </div>
                 {% endfor %}
                 {% endif %}
             </div>

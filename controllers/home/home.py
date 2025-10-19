@@ -5,6 +5,7 @@ from flask import flash
 from flask import url_for, redirect
 from  controllers import home_bp
 from flask import session
+from sqlalchemy import or_, and_
 
 
 
@@ -17,9 +18,29 @@ def home_get():
     total_received_friends_reqs = (
         db.session.query(User.username, User.id)
         .join(Friends, User.id == Friends.sender_id)
-        .filter(Friends.receiver_id == session["user_id"])
+        .filter(Friends.receiver_id == session["user_id"], Friends.status == "pending")
         .all()
     )
 
-    print(total_received_friends_reqs)
-    return render_template("home/home.html", user_info=user_info, total_received_friends_reqs=total_received_friends_reqs)
+    user_id = session["user_id"]
+
+    friends = (
+        db.session.query(User.username, User.id)
+        .join(Friends, or_(
+            Friends.sender_id == User.id,
+            Friends.receiver_id == User.id
+            ))
+        .filter(
+            Friends.status == "accepted",
+            or_(
+                Friends.sender_id == user_id,
+                Friends.receiver_id == user_id
+                ),
+            User.id != user_id  
+            )
+        .distinct()
+        .all()
+        )
+    
+    print(friends)
+    return render_template("home/home.html", user_info=user_info, total_received_friends_reqs=total_received_friends_reqs, friends=friends)

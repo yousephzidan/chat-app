@@ -7,7 +7,7 @@ class Config:
     SECRET_KEY: str = os.getenv("SECRET_KEY", "dev_secret_key") 
     DEBUG: bool = False
     TESTING: bool = False
-    SQLALCHEMY_DATABASE_URI  =  "postgresql://postgres:root@localhost:5432/chat_app"
+    SQLALCHEMY_DATABASE_URI  =  "postgresql://ysf:123@localhost:5432/chat_app"
 
 class DevelopmentConfig(Config):
     DEBUG = True
