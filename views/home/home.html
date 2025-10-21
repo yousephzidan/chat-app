@@ -2,6 +2,8 @@
 
 {% block head_imports %}
 <link rel="stylesheet" href="{{url_for('static', filename='styling/home/home.css')}}">
+
+
 {% endblock head_imports %}
 
 {% block content %}
@@ -10,7 +12,7 @@
       <section class="friends">
         {% if friends %}
           {% for friend, id in friends %}
-            <div class="friend" user-id="{{id}}">{{friend}}</div>
+            <div class="friend" user-id="{{id}}" onclick="chat({{id}})">{{friend}}</div>
           {% endfor %}
         {% endif %}
       </section>
@@ -54,13 +56,27 @@
             </div>
         </section>
     </aside>
-    <main></main>
+    <main>
+      <nav>Chat with {{Username}}</nav>
+      <section class="msg_screen">
+      </section>
+      <div class="inputs">
+        <input placeholder="send a message.." class="input_btn">
+        <div class="up_btns">
+          <button>file</button> 
+          <button>emoji</button>
+          <button class="send_btn" onclick="send_msg()">send</button>
+        </div>
+      </div>
+    </main>
 </div>
 
 {% endblock content %}
 
 {% block js_scripts %}
-
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+<script> const current_user_id = {{session['user_id']}}</script>
 <script type='text/javascript' src="{{ url_for('static', filename='scripts/home/friends.js') }}"></script>
+<script type='text/javascript' src="{{ url_for('static', filename='scripts/home/chat.js') }}"></script>
 
 {% endblock js_scripts %}

@@ -44,3 +44,6 @@ def home_get():
     
     print(friends)
     return render_template("home/home.html", user_info=user_info, total_received_friends_reqs=total_received_friends_reqs, friends=friends)
+
+
+

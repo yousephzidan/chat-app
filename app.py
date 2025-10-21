@@ -1,10 +1,10 @@
 import os
 from flask import Flask
-from flask_socketio import SocketIO
 from dotenv import load_dotenv
 from config import DevelopmentConfig, TestingConfig, ProductionConfig
 from models import db
 from controllers import auth_bp, home_bp, friends_bp, User, Friends
+from socks import socketio 
 from werkzeug.security import generate_password_hash
 
 load_dotenv()
@@ -29,8 +29,9 @@ def create_app():
     app.register_blueprint(home_bp)
     app.register_blueprint(friends_bp)
 
-    socketio = SocketIO(app)
-    
+    socketio.init_app(app) 
+    print(socketio)
+    from socks import chat
 #    with app.app_context():
 #        db.drop_all()
 #        db.create_all()
@@ -53,8 +54,8 @@ def create_app():
 #        db.session.add(friend)
 #        db.session.commit()
 
-    return app, socketio
+    return app
 
 if __name__ == "__main__":
-    app, socketio = create_app()
+    app = create_app()
     socketio.run(app, debug=app.config["DEBUG"])

@@ -161,3 +161,78 @@ aside .config {
   border-radius: 16px;
   cursor: pointer;
 }
+
+
+main {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main section {
+  flex: 0 0 85%;
+  overflow-y: auto;
+  max-height: 1000px;
+}
+
+main nav, main .inputs{
+  flex: 1;
+}
+main section .msg {
+ margin: 12px 0px 12px 0px;
+ width: 100%;
+ display: flex;
+
+}
+
+main section .msg p {
+ border-radius: 16px;
+ padding: 16px;
+ width: fit-content; 
+ background-color: rgba(0,0,1,0.5) ;
+ font-size: 19px;
+}
+
+
+.sender {
+ justify-content: end;
+}
+
+main .inputs {
+  width: 100%;
+  padding: 12px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+main .inputs input {
+  border: none;
+  outline: none;
+  color: white;
+  font-family: "Aeonik";
+  border-radius: 12px;
+  flex: 0 0 75%;
+  height: 100%;
+  font-size: 18px;
+  padding: 12px 0px 12px 24px;
+  background-color: black;
+}
+
+main .inputs .up_btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  height: 100%;
+  border-radius: 12px;
+  padding: 12px 24px; 
+  background-color: black;
+}
+
+
+
+
+
