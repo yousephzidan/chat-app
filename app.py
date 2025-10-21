@@ -3,7 +3,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from config import DevelopmentConfig, TestingConfig, ProductionConfig
 from models import db
-from controllers import auth_bp, home_bp, friends_bp, User, Friends
+from controllers import auth_bp, home_bp, friends_bp, User, Friends, chat_bp
 from socks import socketio 
 from werkzeug.security import generate_password_hash
 
@@ -28,6 +28,7 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(home_bp)
     app.register_blueprint(friends_bp)
+    app.register_blueprint(chat_bp)
 
     socketio.init_app(app) 
     print(socketio)

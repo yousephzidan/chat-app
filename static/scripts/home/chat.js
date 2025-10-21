@@ -14,16 +14,44 @@ const socket = io();
 
 let contactId;
 
-function chat(receiver_id) {
+async function chat(receiver_id) {
+  msg_screen.textContent = ''; 
 
+  const data = await fetch(`/chat/${receiver_id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "same-origin",
+
+  }) 
+
+  const info = await data.json();
+  console.log('hello');
+  info.forEach(data => {
+
+    const newMessage = document.createElement('div');
+    const msg_content = document.createElement('p'); 
+
+    msg_content.textContent = data.msg;
+    newMessage.classList.add('msg');
+
+    if (data.id == current_user_id) newMessage.classList.add("sender");
+
+    newMessage.appendChild(msg_content);
+
+    msg_screen.appendChild(newMessage);
+
+  })
+
+  console.log(info)
   contactId = receiver_id;
-  
+
   socket.emit("join_dm", {
     dm_contact_id: contactId
   })
 
-  msg_screen.textContent = ''; 
-  
+
 }
 
 function send_msg() {
@@ -33,6 +61,7 @@ function send_msg() {
     dm_contact_id: contactId,
     msg: msg_val
   })
+
 }
 
 socket.on('receive_msg', data => {
@@ -40,14 +69,15 @@ socket.on('receive_msg', data => {
 
   const newMessage = document.createElement('div');
   const msg_content = document.createElement('p'); 
-  
+
   msg_content.textContent = data.msg;
   newMessage.classList.add('msg');
-
+  
+  console.log(current_user_id)
   if (data.sender_id == current_user_id) newMessage.classList.add("sender");
 
   newMessage.appendChild(msg_content);
-  
+
   msg_screen.appendChild(newMessage);
 
   input_btn.value = '';

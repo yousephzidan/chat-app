@@ -7,7 +7,7 @@ from sqlalchemy import or_, and_
 def friend_request_action(sender_id: int):
     current_user = session.get('user_id')
 
-    action = request.get_json()
+    action = request.get_json() 
     action = action.get("action")
     if not current_user:
         abort(404)
@@ -30,7 +30,6 @@ def friend_request_action(sender_id: int):
     return jsonify({"error": "Invalid action"}), 400
 
 
-    ...
 @friends_bp.post("/add/<string:friend_username>")
 def add_friend(friend_username: str):
     current_user = session.get('user_id')

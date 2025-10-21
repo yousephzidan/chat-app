@@ -9,3 +9,4 @@ from .auth.register import *
 from .auth.login import * 
 from .home.home import *
 from .home.friends import *
+from .home.chat import *
