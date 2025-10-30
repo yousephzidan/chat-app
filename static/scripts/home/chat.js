@@ -5,6 +5,7 @@ const send_btn = document.querySelector(".send_btn");
 const msg_screen = document.querySelector(".msg_screen");
 const friend_chat = document.querySelector(".friend");  
 
+
 send_btn.addEventListener("click", () => {
   const msg_val = input_btn.value;
 
@@ -50,6 +51,7 @@ async function chat(receiver_id) {
   socket.emit("join_dm", {
     dm_contact_id: contactId
   })
+  msg_screen.scrollTop = msg_screen.scrollHeight;
 
 
 }
@@ -67,6 +69,7 @@ function send_msg() {
 socket.on('receive_msg', data => {
   console.log(data);
 
+
   const newMessage = document.createElement('div');
   const msg_content = document.createElement('p'); 
 
@@ -79,6 +82,7 @@ socket.on('receive_msg', data => {
   newMessage.appendChild(msg_content);
 
   msg_screen.appendChild(newMessage);
+  msg_screen.scrollTop = msg_screen.scrollHeight;
 
   input_btn.value = '';
 
