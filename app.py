@@ -33,6 +33,8 @@ def create_app():
     socketio.init_app(app) 
     print(socketio)
     from socks import chat
+    from socks import voice_call 
+
 #    with app.app_context():
 #        db.drop_all()
 #        db.create_all()

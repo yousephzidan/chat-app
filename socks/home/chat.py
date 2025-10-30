@@ -9,7 +9,6 @@ def handle_dm_room(data):
     current_user_id = session["user_id"]
     receiver_id = data["dm_contact_id"]
     
-    print(receiver_id)
     room = f"dm_room_{min(current_user_id, receiver_id)}/{max(current_user_id, receiver_id)}"
     join_room(room)
     

@@ -12,7 +12,7 @@
       <section class="friends">
         {% if friends %}
           {% for friend, id in friends %}
-            <div class="friend" user-id="{{id}}" onclick="chat({{id}})">{{friend}}</div>
+            <div class="friend" user-id="{{id}}" onclick="chat({{id}}, '{{friend}}')">{{friend}}</div>
           {% endfor %}
         {% endif %}
       </section>
@@ -58,11 +58,12 @@
     </aside>
     <main>
       <nav>
-        <div>
-        Chat with {{friend}}
+        <div class="ChatWith">
         </div>
         <div class="call-video">
-          <button>Call</button>
+          <button onclick="StartAudioCall()">Call
+          <audio id="remoteAudio" class="remoteAudio" autoplay></audio>
+          </button>
           <button>Video</button>
         </div>
 

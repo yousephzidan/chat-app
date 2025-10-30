@@ -28,8 +28,6 @@ def chat(contact_id: int):
             .all()
         )
 
-    for m in messages:
-        print(m)
     return jsonify([
         {
             "id": m.id,
