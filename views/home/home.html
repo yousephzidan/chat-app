@@ -62,13 +62,14 @@
         </div>
         <div class="call-video">
           <button onclick="StartAudioCall()">Call
-          <audio id="remoteAudio" class="remoteAudio" autoplay></audio>
           </button>
           <button>Video</button>
         </div>
-
+          <audio class="remoteAudio" autoplay playsinline></audio>
+          <video class="remoteVideo" autoplay playsinline></video>
       </nav>
       <section class="msg_screen">
+
       </section>
       <div class="inputs">
         <input placeholder="send a message.." class="input_btn">

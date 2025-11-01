@@ -25,15 +25,27 @@ peerConnection.onicecandidate = event => {
 };
 
 const remoteAudio =document.querySelector(".remoteAudio")
+const remoteVideo =document.querySelector(".remoteVideo")
+
+document.addEventListener('keydown', (e) => {
+  if (e.altKey && e.key === "m") {
+    let t = localStream.getAudioTracks()[0];
+    t.enabled = !t.enabled;}
+  if (e.altKey && e.key === "v") {
+    let t = localStream.getVideoTracks()[0];
+    t.enabled = !t.enabled;}
+});
+
 peerConnection.ontrack = event => {
   remoteAudio.srcObject = event.streams[0];
-//  remoteAudio.play();
-  remoteAudio.muted = true;
+  remoteAudio.play();
+  remoteVideo.srcObject = event.streams[0];
+//remoteAudio.muted = true;
 
 };
 
 async function StartAudioCall() {
-  localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   localStream.getTracks().forEach(t => peerConnection.addTrack(t, localStream));
 
   const offer = await peerConnection.createOffer();
@@ -44,7 +56,7 @@ async function StartAudioCall() {
 
 socket.on("receive_call_offer", async ({ offer, from }) => {
 
-  localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   localStream.getTracks().forEach(t => peerConnection.addTrack(t, localStream));
 
   await peerConnection.setRemoteDescription(offer);

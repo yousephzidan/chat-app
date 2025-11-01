@@ -255,5 +255,11 @@ main .inputs .up_btns {
 
 
 
-
-
+.remoteVideo {
+  position: absolute;
+  top: 10%;
+  width: 800px;
+  height: 800px;
+  border: 1px solid gray;
+  position: fixed;
+}
